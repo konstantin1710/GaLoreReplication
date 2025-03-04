@@ -34,6 +34,7 @@ model.train()
 
 for epoch in range(num_epochs):
     total_loss = 0
+    batch_cnt = 0
     for batch in train_dataloader:
         optimizer.zero_grad()
         
@@ -48,15 +49,22 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         total_loss += loss.item()
+        batch_cnt += 1
 
         log_memory_usage("After Batch")
         log_cpu_memory("After Batch")
     
-    avg_loss = total_loss / len(train_dataloader)
+    avg_loss = total_loss / max(1, batch_cnt)
     print(f"Epoch {epoch+1}, Loss: {avg_loss:.4f}")
 
     log_memory_usage(f"After Epoch {epoch+1}")
     log_cpu_memory(f"After Epoch {epoch+1}")
+
+if tokenizer.pad_token_id is None:
+    tokenizer.pad_token_id = tokenizer.eos_token_id
+
+if model.config.pad_token_id is None or model.config.pad_token_id == -1:
+    model.config.pad_token_id = tokenizer.pad_token_id
 
 model.save_pretrained("llama60m_galore")
 tokenizer.save_pretrained("llama60m_galore")

@@ -1,25 +1,28 @@
-from galore_torch import GaLoreAdamW
+from galore_torch import GaLoreAdamW, GaLoreAdamW8bit
 from load_data import tokenizer, tokenized_dataset
 from logger import log_memory_usage, log_cpu_memory
 from accelerate import Accelerator
-from transformers import AutoModelForCausalLM
+from transformers import AutoConfig, AutoModelForCausalLM
 import torch
 from torch.utils.data import DataLoader
+from modeling_llama import LlamaForCausalLM
 
 accelerator = Accelerator()
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Running on: {device}")
 
-model = AutoModelForCausalLM.from_pretrained("huggingface/llama-60m")
+model_config = AutoConfig.from_pretrained("llama_60m.json")
+model = AutoModelForCausalLM.from_config(model_config)
+# model = LlamaForCausalLM(model_config)
 
 # param_groups = [{'params': non_galore_params}, 
 #                 {'params': galore_params, 'rank': 128, 'update_proj_gap': 200, 'scale': 0.25, 'proj_type': 'std'}]
 # optimizer = GaLoreAdamW(param_groups, lr=0.01)
 
-optimizer = GaLoreAdamW(model.parameters(), lr=2e-4, rank=256)
+optimizer = GaLoreAdamW(model.parameters(), lr=2e-4, weight_decay=0) #TODO adjust learning rate
 
-train_dataloader = DataLoader(tokenized_dataset, batch_size=2, shuffle=True) #TODO adjust batch size
+train_dataloader = DataLoader(tokenized_dataset, batch_size=2) #TODO adjust batch size
 
 model, optimizer, train_dataloader = accelerator.prepare(model, optimizer, train_dataloader)
 

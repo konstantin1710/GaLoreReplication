@@ -1,0 +1,6 @@
+galore-torch
+datasets
+transformers
+torch
+accelerate
+psutil

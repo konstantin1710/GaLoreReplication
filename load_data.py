@@ -28,7 +28,7 @@ def load_data_finetune(tokenizer):
     dataset = load_dataset("glue", "sst2")
 
     def tokenize_function_finetune(batch):
-        return tokenizer(batch["sentence"], truncation=True, padding="max_length", max_length=128) #TODO adjust max_length
+        return tokenizer(batch["sentence"], truncation=True, padding="max_length", max_length=512) #TODO adjust max_length
     
     dataset = dataset.map(tokenize_function_finetune)
     dataset.set_format(type="torch", columns=["input_ids", "attention_mask", "label"])

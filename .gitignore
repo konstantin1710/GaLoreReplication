@@ -4,3 +4,5 @@ llama60m_lora/
 llama60m_galore/
 roberta_lora/
 roberta_galore/
+roberta_finetuned/
+llama60m_baseline/

@@ -2,7 +2,6 @@ import torch
 import psutil
 import datetime
 
-
 def logger_init(optimizer=""):
     with open("output.txt", "a") as f:
         f.write(f"\nLogging started at {datetime.datetime.now()} with optimizer {optimizer}\n")

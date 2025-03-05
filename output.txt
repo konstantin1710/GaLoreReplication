@@ -1,0 +1,176 @@
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Batch] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Batch] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Epoch 1] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Batch] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Batch] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Epoch 2] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Batch] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Batch] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+[After Epoch 3] GPU Memory - Allocated: 1.12 GB, Reserved: 1.77 GB
+Max GPU Memory - Allocated: 1.69 GB, Reserved: 1.77 GB
+Logging started at 2025-03-04 22:50:09.465984
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 1.28 GB, Reserved: 5.29 GB
+[After Epoch 2] GPU Memory - Allocated: 1.28 GB, Reserved: 5.29 GB
+[After Epoch 3] GPU Memory - Allocated: 1.28 GB, Reserved: 5.29 GB
+Max GPU Memory - Allocated: 4.52 GB, Reserved: 5.29 GB
+
+Logging started at 2025-03-04 22:52:16.738057
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 1] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 2] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 3] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+Max GPU Memory - Allocated: 4.52 GB, Reserved: 5.29 GB
+
+Logging started at 2025-03-04 22:55:49.493329
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 1] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 2] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 3] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 4] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 5] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Epoch 6] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+Max GPU Memory - Allocated: 4.52 GB, Reserved: 5.29 GB
+
+Logging started at 2025-03-04 22:59:32.006346
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Batch 20] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 40] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 60] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 80] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 140] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 160] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 180] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 200] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 220] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 240] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 260] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 280] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 300] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 320] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 340] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 360] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 380] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 400] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 420] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 440] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 460] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 480] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 500] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 520] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 540] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 560] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 580] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 600] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 620] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 640] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 660] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 680] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 700] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 720] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 740] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 760] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 780] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 800] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 820] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 840] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 860] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 880] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 900] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 920] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 940] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 960] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 980] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1000] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1020] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1040] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1060] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1080] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1100] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1120] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1140] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1160] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1180] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1200] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1220] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1240] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1260] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1280] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1300] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1320] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1340] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1360] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1380] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1400] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1420] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1440] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+[After Batch 1460] GPU Memory - Allocated: 1.61 GB, Reserved: 5.29 GB
+
+Logging started at 2025-03-04 23:32:47.006753
+
+Logging started at 2025-03-04 23:33:48.362401
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+
+Logging started at 2025-03-04 23:34:42.650219
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After LoRA Epoch 1] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After LoRA Epoch 2] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After LoRA Epoch 3] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+Max GPU Memory - Allocated: 3.76 GB, Reserved: 4.36 GB

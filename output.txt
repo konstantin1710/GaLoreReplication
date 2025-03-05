@@ -174,3 +174,136 @@ Logging started at 2025-03-04 23:34:42.650219
 [After LoRA Epoch 2] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
 [After LoRA Epoch 3] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
 Max GPU Memory - Allocated: 3.76 GB, Reserved: 4.36 GB
+
+Logging started at 2025-03-05 09:18:16.074677
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+Max GPU Memory - Allocated: 4.18 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 09:22:01.307723
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 3] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+Max GPU Memory - Allocated: 4.18 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 09:26:58.026202
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 3] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+Max GPU Memory - Allocated: 4.18 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 09:27:48.739563
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After Epoch 2] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After Epoch 3] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+Max GPU Memory - Allocated: 3.76 GB, Reserved: 4.36 GB
+
+Logging started at 2025-03-05 09:48:06.440145
+[Before Fine-Tuning] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+[After Epoch 1] GPU Memory - Allocated: 1.29 GB, Reserved: 1.77 GB
+[After Epoch 2] GPU Memory - Allocated: 1.29 GB, Reserved: 1.77 GB
+[After Epoch 3] GPU Memory - Allocated: 1.29 GB, Reserved: 1.77 GB
+Max GPU Memory - Allocated: 1.44 GB, Reserved: 1.77 GB
+
+Logging started at 2025-03-05 11:02:19.944759 with optimizer 
+
+Logging started at 2025-03-05 11:03:56.920182 with optimizer 
+
+Logging started at 2025-03-05 11:06:18.322406 with optimizer 
+
+Logging started at 2025-03-05 11:17:28.306980 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 3] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 11:18:38.234209 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 3] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+Max GPU Memory - Allocated: 4.18 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 11:20:31.470590 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After Epoch 2] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After Epoch 3] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+Max GPU Memory - Allocated: 3.76 GB, Reserved: 4.36 GB
+
+Logging started at 2025-03-05 11:41:46.860338 with optimizer 
+
+Logging started at 2025-03-05 11:42:13.285308 with optimizer 
+
+Logging started at 2025-03-05 11:44:26.686594 with optimizer 
+
+Logging started at 2025-03-05 11:45:20.709386 with optimizer 
+
+Logging started at 2025-03-05 11:46:27.667619 with optimizer 
+
+Logging started at 2025-03-05 11:47:14.916543 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+
+Logging started at 2025-03-05 11:48:34.423900 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+
+Logging started at 2025-03-05 11:50:33.859293 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+
+Logging started at 2025-03-05 12:11:20.633806 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After Epoch 2] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+[After Epoch 3] GPU Memory - Allocated: 0.58 GB, Reserved: 4.36 GB
+Max GPU Memory - Allocated: 3.76 GB, Reserved: 4.36 GB
+
+Logging started at 2025-03-05 12:12:18.746684 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 3] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+Max GPU Memory - Allocated: 4.18 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 12:13:15.236030 with optimizer 
+
+Logging started at 2025-03-05 12:14:43.886386 with optimizer 
+
+Logging started at 2025-03-05 12:15:26.160022 with optimizer 
+
+Logging started at 2025-03-05 12:16:45.375402 with optimizer 
+
+Logging started at 2025-03-05 12:20:04.780562 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+
+Logging started at 2025-03-05 12:22:21.668490 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+
+Logging started at 2025-03-05 12:23:03.346985 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+
+Logging started at 2025-03-05 12:38:19.832230 with optimizer 
+
+Logging started at 2025-03-05 12:41:17.549975 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.23 GB, Reserved: 0.25 GB
+[After Epoch 1] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 2] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+[After Epoch 3] GPU Memory - Allocated: 0.93 GB, Reserved: 4.75 GB
+Max GPU Memory - Allocated: 4.18 GB, Reserved: 4.75 GB
+
+Logging started at 2025-03-05 12:42:29.948599 with optimizer 
+
+Logging started at 2025-03-05 12:42:59.081372 with optimizer 
+
+Logging started at 2025-03-05 12:43:55.307182 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+
+Logging started at 2025-03-05 12:45:31.154990 with optimizer 
+[Before Training] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+
+Logging started at 2025-03-05 12:47:06.234205 with optimizer 
+[Before Fine-Tuning] GPU Memory - Allocated: 0.50 GB, Reserved: 0.56 GB
+[After Epoch 1] GPU Memory - Allocated: 1.29 GB, Reserved: 1.77 GB

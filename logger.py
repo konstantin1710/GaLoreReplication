@@ -3,9 +3,9 @@ import psutil
 import datetime
 
 
-def logger_init():
+def logger_init(optimizer=""):
     with open("output.txt", "a") as f:
-        f.write(f"\nLogging started at {datetime.datetime.now()}\n")
+        f.write(f"\nLogging started at {datetime.datetime.now()} with optimizer {optimizer}\n")
 
 def log_memory_usage(stage=""):
     with open("output.txt", "a") as f:

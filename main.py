@@ -10,16 +10,15 @@ from peft import LoraConfig, get_peft_model
 from torch.optim import AdamW
 
 # TODO gpt2 für finetuning
+# benchmarking mit glue / anderen benchmarks
 # dataset und model an lora experimente anpassen
 # hyperparameter an config binden (lr abhängig von modell, pretraining etc.)
-# Parameter variabel/loop wie in Bericht beschrieben
-# llama-60m verändern / json überarbeiten
-# benchmarking mit glue / anderen benchmarks
+# Parameter variabel
 
 def get_model(mode):
     """ Creates model for Pretraining or Fine-Tuning """
     if mode == "pretraining":
-        model_config = AutoConfig.from_pretrained("config/llama_60m.json")
+        model_config = AutoConfig.from_pretrained("config/llama_60m.json") #TODO adjust
         model = AutoModelForCausalLM.from_config(model_config, torch_dtype=torch.bfloat16) #TODO for all models?
         tokenizer = AutoTokenizer.from_pretrained("t5-base")
 

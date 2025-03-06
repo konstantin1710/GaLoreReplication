@@ -5,7 +5,8 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer, Auto
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-# Argumente für die Modelle und das GLUE-Task
+# TODO just a draft - not complete, not tested
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_path", type=str, required=True, help="Path to the trained model")
 parser.add_argument("--task", type=str, choices=["sst2", "mnli", "qqp"], default="sst2", help="GLUE task for evaluation")
@@ -13,7 +14,6 @@ parser.add_argument("--batch_size", type=int, default=8)
 parser.add_argument("--model_type", type=str, choices=["roberta", "gpt2"], required=True)
 args = parser.parse_args()
 
-# Lade das Modell & Tokenizer
 print(f"Loading model from {args.model_path}...")
 if args.model_type == "roberta":
     model = AutoModelForSequenceClassification.from_pretrained(args.model_path)
@@ -21,24 +21,21 @@ if args.model_type == "roberta":
 elif args.model_type == "gpt2":
     model = AutoModelForCausalLM.from_pretrained(args.model_path)
     tokenizer = AutoTokenizer.from_pretrained(args.model_path)
-    tokenizer.pad_token = tokenizer.eos_token  # GPT-2 braucht ein Pad-Token
+    tokenizer.pad_token = tokenizer.eos_token
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 model.eval()
 
-# Lade das GLUE-Dataset
 dataset = load_dataset("glue", args.task)
 metric = load_metric("glue", args.task)
 
-# Tokenisieren der Daten
 def preprocess_function(examples):
     return tokenizer(examples["sentence"], truncation=True, padding="max_length", max_length=128)
 
 encoded_dataset = dataset["validation"].map(preprocess_function, batched=True)
 dataloader = DataLoader(encoded_dataset, batch_size=args.batch_size)
 
-# Evaluation
 all_preds = []
 all_labels = []
 
@@ -54,11 +51,10 @@ with torch.no_grad():
             preds = torch.argmax(outputs.logits, dim=-1).cpu().numpy()
         elif args.model_type == "gpt2":
             outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-            preds = torch.argmax(outputs.logits[:, -1, :], dim=-1).cpu().numpy()  # Letztes Token betrachten
+            preds = torch.argmax(outputs.logits[:, -1, :], dim=-1).cpu().numpy()
 
         all_preds.extend(preds)
         all_labels.extend(labels)
 
-# Berechnung der Metriken
 result = metric.compute(predictions=all_preds, references=all_labels)
 print(f"Benchmark Results for {args.task}: {result}")

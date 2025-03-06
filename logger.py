@@ -2,9 +2,10 @@ import torch
 import psutil
 import datetime
 
-def logger_init(optimizer=""):
+def logger_init(args):
     with open("output.txt", "a") as f:
-        f.write(f"\nLogging started at {datetime.datetime.now()} with optimizer {optimizer}\n")
+        f.write(f"\nLogging started at {datetime.datetime.now()}\n")
+        f.write(f"Parameters set: {args}\n")
 
 def log_memory_usage(stage=""):
     with open("output.txt", "a") as f:

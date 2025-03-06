@@ -1,19 +1,19 @@
 import torch
 from datasets import load_dataset
 
-def load_data(mode, tokenizer):
-    if mode == "pretraining":
-        return load_data_pretrain(tokenizer)
-    elif mode == "finetuning":
-        return load_data_finetune(tokenizer)
+def load_data(args, tokenizer):
+    if args.mode == "pretraining":
+        return load_data_pretrain(args, tokenizer)
+    elif args.mode == "finetuning":
+        return load_data_finetune(args, tokenizer)
     else:
         raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")
 
-def load_data_pretrain(tokenizer):
-    dataset = load_dataset("allenai/c4", "realnewslike", split="train[:0.1%]") # TODO adjust split
+def load_data_pretrain(args, tokenizer):
+    dataset = load_dataset("allenai/c4", "realnewslike", split=f"train[:{args.train_split}%]")
 
     def tokenize_function_pretrain(batch):
-        encoding = tokenizer(batch["text"], truncation=True, padding="max_length", max_length=512) #TODO adjust max_length
+        encoding = tokenizer(batch["text"], truncation=True, padding="max_length", max_length=args.max_length)
         return {
             "input_ids": torch.tensor(encoding["input_ids"]).clone().detach().to(torch.long),
             "attention_mask": torch.tensor(encoding["attention_mask"]).clone().detach().to(torch.long),
@@ -24,11 +24,11 @@ def load_data_pretrain(tokenizer):
 
     return dataset
 
-def load_data_finetune(tokenizer):
+def load_data_finetune(args, tokenizer):
     dataset = load_dataset("glue", "sst2")
 
     def tokenize_function_finetune(batch):
-        return tokenizer(batch["sentence"], truncation=True, padding="max_length", max_length=512) #TODO adjust max_length
+        return tokenizer(batch["sentence"], truncation=True, padding="max_length", max_length=args.max_length)
     
     dataset = dataset.map(tokenize_function_finetune)
     dataset.set_format(type="torch", columns=["input_ids", "attention_mask", "label"])

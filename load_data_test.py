@@ -1,11 +1,11 @@
 import torch
 from datasets import load_dataset
 
-def load_data(mode, tokenizer):
-    if mode == "pretraining":
+def load_data(args, tokenizer):
+    if args.mode == "pretraining":
         dataset = load_dataset("allenai/c4", "realnewslike", streaming=True, split="train")
         dataset = dataset.take(100)
-    elif mode == "finetuning":
+    elif args.mode == "finetuning":
         dataset = load_dataset("glue", "sst2", streaming=True)
     else:
         raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")

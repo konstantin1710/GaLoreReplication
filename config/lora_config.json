@@ -1,0 +1,7 @@
+{
+    "r": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.1,
+    "target_modules_finetuning": ["query", "value"],
+    "target_modules_pretraining": ["q_proj", "v_proj"]
+}

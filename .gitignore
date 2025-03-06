@@ -1,5 +1,6 @@
 __pycache__
 test.py
+output.txt
 llama60m_lora/
 llama60m_galore/
 roberta_lora/

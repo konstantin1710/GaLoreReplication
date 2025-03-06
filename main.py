@@ -1,6 +1,5 @@
 from galore_torch import GaLoreAdamW, GaLoreAdamW8bit
 from logger import logger_init, log_memory_usage, log_max_memory
-from load_data_test import load_data
 from accelerate import Accelerator
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSequenceClassification, AutoTokenizer
 import torch
@@ -9,17 +8,15 @@ from args import args
 from peft import LoraConfig, get_peft_model
 from torch.optim import AdamW
 
-# TODO gpt2 für finetuning
-# benchmarking mit glue / anderen benchmarks
-# dataset und model an lora experimente anpassen
+# TODO benchmarking mit glue / anderen benchmarks
 # hyperparameter an config binden (lr abhängig von modell, pretraining etc.)
 # Parameter variabel
 
-def get_model(mode):
+def get_model(mode, model_name="roberta"):
     """ Creates model for Pretraining or Fine-Tuning """
     if mode == "pretraining":
         model_config = AutoConfig.from_pretrained("config/llama_60m.json") #TODO adjust
-        model = AutoModelForCausalLM.from_config(model_config, torch_dtype=torch.bfloat16) #TODO for all models?
+        model = AutoModelForCausalLM.from_config(model_config, torch_dtype=torch.bfloat16) #TODO torch_dtype for all models?
         tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
         if tokenizer.pad_token_id is None:
@@ -29,8 +26,17 @@ def get_model(mode):
         model.generation_config.pad_token_id = model.config.pad_token_id
 
     elif mode == "finetuning":
-        model = AutoModelForSequenceClassification.from_pretrained("roberta-base", num_labels=2, torch_dtype=torch.bfloat16) #TODO for all models? TODO adjust num_labels?
-        tokenizer = AutoTokenizer.from_pretrained("roberta-base")
+        if model_name == "roberta":
+            model = AutoModelForSequenceClassification.from_pretrained("roberta-base", num_labels=2, torch_dtype=torch.bfloat16) #TODO torch_dtype for all models?
+            tokenizer = AutoTokenizer.from_pretrained("roberta-base")
+        elif model_name == "gpt2":
+            model = AutoModelForSequenceClassification.from_pretrained("gpt2", num_labels=2)
+            tokenizer = AutoTokenizer.from_pretrained("gpt2", padding_side = "left")
+
+            tokenizer.pad_token = tokenizer.eos_token
+            model.config.pad_token_id = tokenizer.pad_token_id
+        else:
+            raise ValueError("Invalid model name. Choose 'roberta' or 'gpt2'")
     else:
         raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")
     
@@ -46,7 +52,7 @@ def get_optimizer(mode, model, optimizer_type):
         return AdamW(model.parameters(), lr=5e-5, weight_decay=0.01), model #TODO adjust
     elif optimizer_type == "galore":
         return GaLoreAdamW(model.parameters(), lr=2e-4, weight_decay=0), model #TODO adjust lr
-    elif optimizer_type == "galore":
+    elif optimizer_type == "galore8bit":
         return GaLoreAdamW8bit(model.parameters(), lr=2e-4, weight_decay=0), model #TODO adjust lr
     elif optimizer_type == "lora":
         if mode == "finetuning":
@@ -66,7 +72,7 @@ def get_optimizer(mode, model, optimizer_type):
     else:
         raise ValueError(f"Unknown optimizer: {optimizer_type}")
 
-def train(model, optimizer, dataloader, num_epochs=30):
+def train(device, accelerator, scheduler, model, optimizer, dataloader, num_epochs=30):
     """ training model """
     model, optimizer, dataloader = accelerator.prepare(model, optimizer, dataloader)
     log_memory_usage("Before Training")
@@ -95,6 +101,7 @@ def train(model, optimizer, dataloader, num_epochs=30):
             loss = outputs.loss
             accelerator.backward(loss)
             optimizer.step()
+            scheduler.step()
             
             total_loss += loss.item()
             batch_cnt += 1
@@ -108,18 +115,33 @@ def train(model, optimizer, dataloader, num_epochs=30):
     return model
 
 if __name__ == "__main__":
-    accelerator = Accelerator(mixed_precision="bf16") #TODO for all models?
+    if (args.test):
+        print("Test mode")
+        # activates streaming for datasets (only for pretraining)
+        if args.mode == "pretraining":
+            from load_data_test import load_data
+        elif args.mode == "finetuning":
+            from load_data import load_data
+        else:
+            raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")
+        accelerator = Accelerator()
+    else:
+        from load_data import load_data
+        # bf16 only useful for A100 GPUs
+        accelerator = Accelerator(mixed_precision="bf16")
+
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     print(f"Running on: {device}")
     print(f"Using optimizer: {args.optimizer}")
     logger_init(args.optimizer)
 
-    model, tokenizer = get_model(args.mode)
+    model, tokenizer = get_model(args.mode, args.model_name)
 
     dataset = load_data(args.mode, tokenizer)
 
     optimizer, model = get_optimizer(args.mode, model, args.optimizer)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30) #TODO adjust T_max
 
     if args.mode == "pretraining":
         dataloader = DataLoader(dataset, batch_size=8) # TODO adjust batch size
@@ -128,9 +150,9 @@ if __name__ == "__main__":
     else:
         raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")
 
-    trained_model = train(model, optimizer, dataloader, num_epochs=30) #TODO adjust num_epochs
+    trained_model = train(device, accelerator, scheduler, model, optimizer, dataloader, num_epochs=30) #TODO adjust num_epochs
 
-    model_path = f"llama60m_{args.optimizer}" if args.mode == "pretraining" else "roberta_finetuned" #TODO adjust llama60m
+    model_path = f"llama60m_{args.optimizer}_pretrained" if args.mode == "pretraining" else f"{args.model_name}_{args.optimizer}_finetuned" #TODO adjust llama60m
     trained_model.save_pretrained(model_path)
     tokenizer.save_pretrained(model_path)
 

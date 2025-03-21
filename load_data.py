@@ -10,7 +10,9 @@ def load_data(args, tokenizer):
         raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")
 
 def load_data_pretrain(args, tokenizer):
-    dataset = load_dataset("allenai/c4", "realnewslike", split=f"train[:{args.train_split}%]")
+    dataset = load_dataset("allenai/c4", "realnewslike", streaming=True, split="train")
+    if args.test == "true":
+        dataset = dataset.take(1000)
 
     def tokenize_function_pretrain(batch):
         encoding = tokenizer(batch["text"], truncation=True, padding="max_length", max_length=args.max_length)
@@ -20,7 +22,7 @@ def load_data_pretrain(args, tokenizer):
         }
 
     dataset = dataset.map(tokenize_function_pretrain, remove_columns=["text", "timestamp", "url"])
-    dataset.set_format("torch")
+    dataset.with_format("torch")
 
     return dataset
 

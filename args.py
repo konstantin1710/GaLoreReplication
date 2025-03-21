@@ -2,7 +2,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Run training")
 parser.add_argument("--mode", type=str, choices=["pretraining", "finetuning"], required=True, help="Training mode to use")
-parser.add_argument("--optimizer", type=str, choices=["lora", "galore", "galore8bit", "baseline"], required=True, help="Optimizer type to use")
+parser.add_argument("--optimizer", type=str, choices=["lora", "galore", "galore8bit", "lora+galore8bit", "baseline"], required=True, help="Optimizer type to use")
 parser.add_argument("--model", type=str, choices=["llama_60m", "llama_1b", "llama_7b", "roberta", "gpt2"], required=True, help="Model to use")
 parser.add_argument("--batch_size", type=int, default=16, help="Batch size")
 parser.add_argument("--num_epochs", type=int, default=30, help="Number of epochs")

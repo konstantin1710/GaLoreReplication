@@ -1,3 +1,4 @@
+from load_data import load_data
 from galore_torch import GaLoreAdamW, GaLoreAdamW8bit
 from logger import logger_init, log_memory_usage, log_max_memory
 from accelerate import Accelerator
@@ -18,10 +19,9 @@ def get_model(args):
         else:
             model = AutoModelForCausalLM.from_config(model_config)
         
-        # TODO in the galore project they say: 
+        # in the galore project they say: 
         # "it doesn't matter which tokenizer we use, because we train from scratch
         # T5 tokenizer was trained on C4 and we are also training on C4, so it's a good choice"
-        # to be discussed if right, otherwise we could use "meta-llama/Llama-2-7b-hf" as tokenizer
         tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
         if tokenizer.pad_token_id is None:
@@ -77,11 +77,16 @@ def get_optimizer(args, model):
         return GaLoreAdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
     elif args.optimizer == "galore8bit":
         return GaLoreAdamW8bit(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
-    elif args.optimizer == "lora":        
+    elif args.optimizer == "lora":
         lora_config = load_lora_config(args)
         model = get_peft_model(model, lora_config)
         model.print_trainable_parameters()
         return torch.optim.AdamW(model.parameters(), lr=args.lr), model
+    elif args.optimizer == "lora+galore8bit":
+        lora_config = load_lora_config(args)
+        model = get_peft_model(model, lora_config)
+        model.print_trainable_parameters()
+        return GaLoreAdamW8bit(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
     else:
         raise ValueError(f"Unknown optimizer: {args.optimizer}")
 
@@ -130,17 +135,8 @@ def train(device, accelerator, scheduler, model, optimizer, dataloader, num_epoc
 if __name__ == "__main__":
     if (args.test == "true"):
         print("Test mode")
-        # activates streaming for datasets (only for pretraining)
-        if args.mode == "pretraining":
-            from load_data_test import load_data
-        elif args.mode == "finetuning":
-            from load_data import load_data
-        else:
-            raise ValueError("Invalid mode. Choose 'pretraining' or 'finetuning'")
         accelerator = Accelerator()
     else:
-        from load_data import load_data
-        # bf16 only useful for A100 GPUs
         accelerator = Accelerator(mixed_precision="bf16")
 
     device = "cuda" if torch.cuda.is_available() else "cpu"

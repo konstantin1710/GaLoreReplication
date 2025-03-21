@@ -11,8 +11,7 @@ def load_data(args, tokenizer):
 
 def load_data_pretrain(args, tokenizer):
     dataset = load_dataset("allenai/c4", "realnewslike", streaming=True, split="train")
-    if args.test == "true":
-        dataset = dataset.take(1000)
+    dataset = dataset.take(args.num_training_tokens)
 
     def tokenize_function_pretrain(batch):
         encoding = tokenizer(batch["text"], truncation=True, padding="max_length", max_length=args.max_length)

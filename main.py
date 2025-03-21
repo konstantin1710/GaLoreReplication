@@ -50,10 +50,6 @@ def get_model(args):
     
     return model, tokenizer
 
-# param_groups = [{'params': non_galore_params}, 
-#                 {'params': galore_params, 'rank': 128, 'update_proj_gap': 200, 'scale': 0.25, 'proj_type': 'std'}]
-# optimizer = GaLoreAdamW(param_groups, lr=0.01)
-
 def load_lora_config(args):
     """Loads LoRa configuration from file"""
     with open(args.lora_config, "r") as f:
@@ -68,25 +64,35 @@ def load_lora_config(args):
         target_modules=target_modules
     )
 
+def load_galore_config(args):
+    """Loads GaLore configuration from file"""
+    with open(args.galore_config, "r") as f:
+        return json.load(f)
 
 def get_optimizer(args, model):
-    """ creates optimizer (GaLore or LoRa) """
+    """Creates optimizer (GaLore, LoRa, or baseline AdamW)"""
     if args.optimizer == "baseline":
         return AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
-    elif args.optimizer == "galore":
-        return GaLoreAdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
-    elif args.optimizer == "galore8bit":
-        return GaLoreAdamW8bit(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
-    elif args.optimizer == "lora":
+    elif args.optimizer in ["galore", "galore8bit"]:
+        galore_config = load_galore_config(args)
+        param_groups = [
+            {"params": model.parameters(), **galore_config}
+        ]
+        optimizer_class = GaLoreAdamW if args.optimizer == "galore" else GaLoreAdamW8bit
+        return optimizer_class(param_groups, lr=args.lr, weight_decay=args.weight_decay), model
+    elif args.optimizer in ["lora", "lora+galore8bit"]:
         lora_config = load_lora_config(args)
         model = get_peft_model(model, lora_config)
         model.print_trainable_parameters()
-        return torch.optim.AdamW(model.parameters(), lr=args.lr), model
-    elif args.optimizer == "lora+galore8bit":
-        lora_config = load_lora_config(args)
-        model = get_peft_model(model, lora_config)
-        model.print_trainable_parameters()
-        return GaLoreAdamW8bit(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
+        
+        if args.optimizer == "lora":
+            return torch.optim.AdamW(model.parameters(), lr=args.lr), model
+        else:
+            galore_config = load_galore_config()
+            param_groups = [
+                {"params": model.parameters(), **galore_config}
+            ]
+            return GaLoreAdamW8bit(param_groups, lr=args.lr, weight_decay=args.weight_decay), model
     else:
         raise ValueError(f"Unknown optimizer: {args.optimizer}")
 

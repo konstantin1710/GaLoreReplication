@@ -6,8 +6,8 @@ python main.py \
     --model llama_1b \
     --batch_size 8 \
     --num_epochs 30 \
+    --num_training_tokens 1000000 \
     --max_length 512 \
-    --train_split 10 \
     --shuffle true \
     --dtype bf16 \
     --lr 4e-4 \

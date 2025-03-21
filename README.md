@@ -25,13 +25,14 @@ python train.py --mode <mode> --optimizer <optimizer> --model <model> [other opt
 | `--batch_size`  | int  | `16`      | N/A     | Number of samples per batch. |
 | `--num_epochs`  | int  | `30`      | N/A     | Number of training epochs. |
 | `--max_length`  | int  | `512`     | N/A     | Maximum token length per input. |
-| `--train_split` | float | `10`     | N/A     | Percentage of training data used. |
+| `--num_training_tokens` | int | `1e9`     | N/A     | Number of training tokens (only for pretraining). |
 | `--shuffle`     | string | `true`   | `true`, `false` | Whether to shuffle training data (not applicable in streaming mode). |
 | `--dtype`       | string | `fp16`   | `bf16`, `fp16` | Data type for training (currently only `bf16` is working). |
 | `--lr`          | float | `4e-4`    | N/A     | Learning rate for optimizer. |
 | `--weight_decay` | float | `0.01`   | N/A     | Weight decay for optimizer. |
 | `--tmax`        | int  | `30`      | N/A     | Tmax for scheduler. |
 | `--lora_config` | string | `config/lora_config.json` | N/A | Path to the LoRa configuration file. |
+| `--galore_config` | string | `config/galore_config.json` | N/A | Path to the GaLore configuration file. |
 | `--test`        | string | `false`  | `true`, `false` | Whether to enable test mode. Takes only 1000 tokens of dataset for pretraining and accelerator without bf16 (useful only for A100 GPUs). |
 
 ## Example Command

@@ -1,28 +1,38 @@
 import torch
 import psutil
-import datetime
+import csv
+import math
 
-def logger_init(args):
-    with open("output.txt", "a") as f:
-        f.write(f"\nLogging started at {datetime.datetime.now()}\n")
-        f.write(f"Parameters set: {args}\n")
+CSV_FILE = "output.csv"
 
-def log_memory_usage(stage=""):
-    with open("output.txt", "a") as f:
-        if torch.cuda.is_available():
-            allocated = torch.cuda.memory_allocated() / 1e9
-            reserved = torch.cuda.memory_reserved() / 1e9
-            f.write(f"[{stage}] GPU Memory - Allocated: {allocated:.2f} GB, Reserved: {reserved:.2f} GB\n")
-        else:
-            mem = psutil.virtual_memory()
-            f.write(f"[{stage}] CPU Memory Used: {mem.used / 1e9:.2f} GB / {mem.total / 1e9:.2f} GB\n")
+def init_csv():
+    """Initialize CSV file with headers."""
+    with open(CSV_FILE, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["epoch", "training_step", "compute_time", "peak_memory_usage_history_GB", 
+                         "peak_memory_usage_allocated_GB", "peak_memory_usage_reserved_GB", 
+                         "loss", "perplexity"])
 
-def log_max_memory():
-    with open("output.txt", "a") as f:
-        if torch.cuda.is_available():
-            max_allocated = torch.cuda.max_memory_allocated() / 1e9
-            max_reserved = torch.cuda.max_memory_reserved() / 1e9
-            f.write(f"Max GPU Memory - Allocated: {max_allocated:.2f} GB, Reserved: {max_reserved:.2f} GB\n")
-        else:
-            mem = psutil.virtual_memory()
-            f.write(f"Max CPU Memory Used: {mem.total / 1e9:.2f} GB\n")
+def measure_memory():
+    """Measure memory usage from CUDA or CPU."""
+    if torch.cuda.is_available():
+        history = torch.cuda.memory._record_memory_history()
+        peak_history = max([entry["allocated_bytes.all.current"] for entry in history]) / 1e9 if history else 0
+        max_allocated = torch.cuda.max_memory_allocated() / 1e9
+        max_reserved = torch.cuda.max_memory_reserved() / 1e9
+    else:
+        mem = psutil.virtual_memory()
+        peak_history = mem.used / 1e9
+        max_allocated = mem.used / 1e9
+        max_reserved = mem.total / 1e9  # Total system memory
+
+    return peak_history, max_allocated, max_reserved
+
+def log_to_csv(epoch, step, compute_time, loss):
+    """Log training metrics to CSV file."""
+    peak_history, max_allocated, max_reserved = measure_memory()
+    perplexity = math.exp(loss) if loss < 100 else float("inf")  # Avoid overflow
+
+    with open(CSV_FILE, mode="a", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow([epoch, step, compute_time, peak_history, max_allocated, max_reserved, loss, perplexity])

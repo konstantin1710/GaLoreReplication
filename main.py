@@ -1,6 +1,6 @@
 from load_data import load_data
 from galore_torch import GaLoreAdamW, GaLoreAdamW8bit
-from logger import logger_init, log_memory_usage, log_max_memory
+from logger import init_csv, log_to_csv
 from accelerate import Accelerator
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSequenceClassification, AutoTokenizer
 import torch
@@ -9,6 +9,7 @@ from args import args
 from peft import LoraConfig, get_peft_model
 from torch.optim import AdamW
 import json
+import datetime
 
 def get_model(args):
     """ Creates model for Pretraining or Fine-Tuning """
@@ -99,7 +100,6 @@ def get_optimizer(args, model):
 def train(device, accelerator, scheduler, model, optimizer, dataloader, num_epochs):
     """ training model """
     model, optimizer, dataloader = accelerator.prepare(model, optimizer, dataloader)
-    log_memory_usage("Before Training")
     model.train()
     
     for epoch in range(num_epochs):
@@ -107,6 +107,7 @@ def train(device, accelerator, scheduler, model, optimizer, dataloader, num_epoc
         batch_cnt = 0
         for batch in dataloader:
             optimizer.zero_grad()
+            start_time = datetime.datetime.now()
             
             if args.mode == "pretraining":
                 input_ids = batch["input_ids"].to(device)
@@ -127,14 +128,14 @@ def train(device, accelerator, scheduler, model, optimizer, dataloader, num_epoc
             optimizer.step()
             scheduler.step()
             
+            compute_time = (datetime.datetime.now() - start_time).total_seconds()
+            log_to_csv(epoch + 1, batch_cnt + 1, compute_time, loss.item())
+
             total_loss += loss.item()
             batch_cnt += 1
-            if batch_cnt % 100 == 0: #TODO how often to print?
-                log_memory_usage(f"After Batch {batch_cnt}")
         
         avg_loss = total_loss / max(1, batch_cnt)
         print(f"Epoch {epoch+1}, Loss: {avg_loss:.4f}")
-        log_memory_usage(f"After Epoch {epoch+1}")
     
     return model
 
@@ -149,7 +150,7 @@ if __name__ == "__main__":
 
     print(f"Running on: {device}")
     print(f"Using optimizer: {args.optimizer}")
-    logger_init(args)
+    init_csv()
 
     model, tokenizer = get_model(args)
 
@@ -172,5 +173,3 @@ if __name__ == "__main__":
     model_path = f"models/{file_name}"
     trained_model.save_pretrained(model_path)
     tokenizer.save_pretrained(model_path)
-
-    log_max_memory()

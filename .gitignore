@@ -1,4 +1,6 @@
 __pycache__
 test.py
 output.txt
+output.csv
 models/
+scripts/shell/test2.sh

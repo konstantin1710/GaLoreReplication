@@ -87,7 +87,7 @@ def get_optimizer(args, model):
         model.print_trainable_parameters()
         
         if args.optimizer == "lora":
-            return torch.optim.AdamW(model.parameters(), lr=args.lr), model
+            return AdamW(model.parameters(), lr=args.lr), model
         else:
             galore_config = load_galore_config()
             param_groups = [

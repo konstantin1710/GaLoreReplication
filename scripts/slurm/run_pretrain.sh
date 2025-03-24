@@ -1,23 +1,17 @@
 #!/bin/bash
 
-#SBATCH --job-name=galore_pretrain
-#SBATCH --nodes=1 
-#SBATCH --ntasks=1 
-#SBATCH --mem=32G 
-#SBATCH --cpus-per-task=4 
-#SBATCH --gres=gpu:1 
-#SBATCH --output=logs/%j.out
-#SBATCH --error=logs/%j.err
-#SBATCH --time=00:10:00 
+#SBATCH --job-name=galore_pretrain   # Name des Jobs
+#SBATCH --nodes=1                    # 1 Knoten nutzen
+#SBATCH --ntasks=1                    # 1 Aufgabe
+#SBATCH --mem=32G                     # 32 GB RAM zuweisen
+#SBATCH --cpus-per-task=4             # 4 CPU-Kerne pro Task
+#SBATCH --gres=gpu:1                  # 1 GPU anfordern
+#SBATCH --time=00:05:00               # Maximale Laufzeit von 5 Minuten
 
-# Ensure the log directory exists
-mkdir -p logs
+# Docker-Image von Docker Hub ausführen
+srun \
+    --container-image=docker://tommotius/galore_image \
+    --container-name=ml-container \
+    --container-mounts=/home/apzgb/Dokumente/GaLoreReplication:/workspace \
+    --pty bash -i -c "cd /workspace && ./scripts/shell/test.sh"
 
-# Build the Docker image
-docker build -t galore_image -f /home/apzgb/Dokumente/GaLoreReplication/Dockerfile /home/apzgb/Dokumente/GaLoreReplication
-
-# Run the Docker container with the appropriate resources
-srun --container-image=galore_image --container-name=ml-container \
-     --container-mounts /home/apzgb/Dokumente/GaLoreReplication:/workspace \
-     --gres=gpu:1 --cpus-per-task=4 --mem=32G \
-     --pty bash -i -c "cd /workspace && python train.py --optimizer=galore"

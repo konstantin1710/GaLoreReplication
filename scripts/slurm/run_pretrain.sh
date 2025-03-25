@@ -8,10 +8,12 @@
 #SBATCH --gres=gpu:1                  # 1 GPU anfordern
 #SBATCH --time=00:05:00               # Maximale Laufzeit von 5 Minuten
 
+# Set TMPDIR to a different directory
+export TMPDIR=/home/apzgb/tmp
+
 # Docker-Image von Docker Hub ausführen
 srun \
     --container-image=docker://tommotius/galore_image \
     --container-name=ml-container \
     --container-mounts=/home/apzgb/Dokumente/GaLoreReplication:/workspace \
-    --pty bash -i -c "cd /workspace && ./scripts/shell/test.sh"
-
+    bash -i -c "cd /workspace && chmod +x ./scripts/shell/pretrain.sh"

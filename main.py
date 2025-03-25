@@ -76,8 +76,10 @@ def get_optimizer(args, model):
         return AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay), model
     elif args.optimizer in ["galore", "galore8bit"]:
         galore_config = load_galore_config(args)
+        trainable_params = [p for p in model.parameters() if p.requires_grad and p.dim() > 1]
+
         param_groups = [
-            {"params": model.parameters(), **galore_config}
+            {"params": trainable_params, **galore_config}
         ]
         optimizer_class = GaLoreAdamW if args.optimizer == "galore" else GaLoreAdamW8bit
         return optimizer_class(param_groups, lr=args.lr, weight_decay=args.weight_decay), model
@@ -90,8 +92,9 @@ def get_optimizer(args, model):
             return AdamW(model.parameters(), lr=args.lr), model
         else:
             galore_config = load_galore_config()
+            trainable_params = [p for p in model.parameters() if p.requires_grad and p.dim() > 1]
             param_groups = [
-                {"params": model.parameters(), **galore_config}
+                {"params": trainable_params, **galore_config}
             ]
             return GaLoreAdamW8bit(param_groups, lr=args.lr, weight_decay=args.weight_decay), model
     else:
@@ -101,13 +104,13 @@ def train(device, accelerator, scheduler, model, optimizer, dataloader, num_epoc
     """ training model """
     model, optimizer, dataloader = accelerator.prepare(model, optimizer, dataloader)
     model.train()
+    start_time = datetime.datetime.now()
     
     for epoch in range(num_epochs):
         total_loss = 0
         batch_cnt = 0
         for batch in dataloader:
             optimizer.zero_grad()
-            start_time = datetime.datetime.now()
             
             if args.mode == "pretraining":
                 input_ids = batch["input_ids"].to(device)

@@ -8,7 +8,7 @@ parser.add_argument("--batch_size", type=int, default=16, help="Batch size")
 parser.add_argument("--num_epochs", type=int, default=30, help="Number of epochs")
 parser.add_argument("--max_length", type=int, default=512, help="Max length of input tokens")
 parser.add_argument("--num_training_tokens", type=int, default=1e9, help="Number of training tokens")
-parser.add_argument("--shuffle", type=str, choices=["true", "false"], default="true", help="Shuffle data (doesn't work in streaming mode)")
+parser.add_argument("--shuffle", type=str, choices=["true", "false"], default="false", help="Shuffle data (doesn't work in streaming mode)")
 parser.add_argument("--dtype", type=str, choices=["bf16", "fp16"], default="fp16", help="Data type to use") # TODO for now just bf16 working
 parser.add_argument("--lr", type=float, default=4e-4, help="Learning rate for optimizer")
 parser.add_argument("--weight_decay", type=float, default=0.01, help="Weight decay for optimizer")

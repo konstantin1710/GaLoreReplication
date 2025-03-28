@@ -9,11 +9,11 @@
 #SBATCH --time=00:05:00               # Maximale Laufzeit von 5 Minuten
 
 # Set TMPDIR to a different directory
-export TMPDIR=/home/apzgb/tmp
+export TMPDIR=/home/aqett/tmp
 
 # Docker-Image von Docker Hub ausführen
 srun \
     --container-image=nvidia/cuda:12.3.0-base-ubuntu20.04 \
     --container-name=ml-container \
-    --container-mounts=/home/apzgb/Dokumente/GaLoreReplication:/workspace \
+    --container-mounts=/home/aqett/Dokumente/GaLoreReplication:/workspace \
     bash -i -c "cd /workspace && chmod +x ./scripts/shell/pretrain.sh"

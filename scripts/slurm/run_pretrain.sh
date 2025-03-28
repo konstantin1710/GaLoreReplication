@@ -13,7 +13,7 @@ export TMPDIR=/home/apzgb/tmp
 
 # Docker-Image von Docker Hub ausführen
 srun \
-    --container-image=docker://tommotius/galore_image \
+    --container-image=nvidia/cuda:12.3.0-base-ubuntu20.04 \
     --container-name=ml-container \
     --container-mounts=/home/apzgb/Dokumente/GaLoreReplication:/workspace \
     bash -i -c "cd /workspace && chmod +x ./scripts/shell/pretrain.sh"

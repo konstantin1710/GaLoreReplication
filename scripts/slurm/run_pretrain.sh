@@ -6,14 +6,11 @@
 #SBATCH --mem=32G                     # 32 GB RAM zuweisen
 #SBATCH --cpus-per-task=4             # 4 CPU-Kerne pro Task
 #SBATCH --gres=gpu:1                  # 1 GPU anfordern
-#SBATCH --time=00:05:00               # Maximale Laufzeit von 5 Minuten
-
-# Set TMPDIR to a different directory
-export TMPDIR=/home/apzgb/tmp
+#SBATCH --time=01:00:00               # Maximale Laufzeit von 1 Stunde
 
 # Docker-Image von Docker Hub ausführen
 srun \
-    --container-image=docker://tommotius/galore_image \
+    --container-image=docker://mcr.informatik.uni-halle.de#apcne/galore-replication \
     --container-name=ml-container \
     --container-mounts=/home/apzgb/Dokumente/GaLoreReplication:/workspace \
-    bash -i -c "cd /workspace && chmod +x ./scripts/shell/pretrain.sh"
+    bash -i -c "cd /workspace && chmod +x ./scripts/shell/pretrain.sh && ./scripts/shell/pretrain.sh"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python main.py \
+python3 main.py \
     --mode pretraining \
     --optimizer galore \
     --model llama_60m \

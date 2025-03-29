@@ -1,11 +1,11 @@
 #!/bin/bash
 
-python main.py \
+python3 main.py \
     --mode pretraining \
     --optimizer galore \
     --model llama_1b \
-    --batch_size 8 \
-    --num_epochs 30 \
+    --batch_size 512 \
+    --num_epochs 1 \
     --num_training_tokens 1000000 \
     --max_length 512 \
     --shuffle false \
